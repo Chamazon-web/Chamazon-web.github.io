@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chamazon-Membership</title>
+    <link rel="icon" type="image/png" href="logo1.jpg">
+</head>
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; min-height: 100%; }
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-image: url(bg10.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.membership-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    overflow-y: auto;
+    z-index: 9999;
+}
+
+.membership-card {
+    position: relative;
+    width: 100%;
+    max-width: 510px;
+    margin: auto;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 28px clamp(14px, 4vw, 24px) 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    text-align: center;
+}
+
+.membership-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 32px;
+    background: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.membership-close p { margin: 0; color: #ff0202; }
+.membership-close a {
+    color: #fa0202;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.premium-icon {
+    font-size: 42px;
+    color: #ffb000;
+    line-height: 42px;
+    margin-bottom: 5px;
+}
+
+.membership-card h1 {
+    margin: 0;
+    font-size: clamp(28px, 7vw, 36px);
+    color: #17233c;
+}
+.premium-subtitle {
+    margin: 4px 0 20px;
+    color: #526176;
+    font-size: clamp(14px, 3.6vw, 17px);
+}
+
+.plans {
+    display: flex;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #edf6ff;
+    border: 1px solid #d7e5f4;
+}
+.plan {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    padding: 16px 4px 12px;
+    cursor: pointer;
+    border-right: 1px solid #d5e2ef;
+    color: #17233c;
+    transition: 0.2s;
+}
+.plan:last-child { border-right: none; }
+.plan h3 { margin: 0 0 5px; font-size: clamp(14px, 3.6vw, 17px); }
+.plan span { font-size: clamp(11px, 2.9vw, 13px); color: #526176; display: block; }
+.plan.active { background: #1688e8; color: white; }
+.plan.active span { color: white; }
+.best-value {
+    position: absolute;
+    top: -1px;
+    right: 6px;
+    background: #ffd21c;
+    color: #111;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 7px;
+    border-radius: 8px;
+}
+
+.benefits {
+    margin-top: 12px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 14px;
+    padding: 6px 2px;
+}
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0;
+}
+.benefit-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+}
+.delivery { background: #dff2ff; color: #1688e8; }
+.access { background: #eee2ff; color: #6639d9; }
+.entertainment { background: #ddf7e5; color: #159447; }
+.offers { background: #fff0d1; color: #e9a000; }
+.benefit h3 { margin: 0 0 3px; font-size: 14px; color: #17233c; }
+.benefit p { margin: 0; font-size: 12px; color: #526176; }
+
+.subscription-box {
+    margin-top: 10px;
+    padding: 15px 14px 12px;
+    background: #eaf6ff;
+    border-radius: 10px;
+}
+.price {
+    font-size: clamp(26px, 7vw, 30px);
+    font-weight: bold;
+    color: #101828;
+    margin-bottom: 10px;
+}
+.price span { font-size: 17px; font-weight: normal; }
+.subscribe-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 50px;
+    background: #ffc400;
+    color: #111;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.subscribe-btn:hover { background: #ffb900; transform: translateY(-1px); }
+.subscription-box p { margin: 9px 0 0; font-size: 11px; color: #526176; }
+.subscription-box a { color: #1673b8; text-decoration: none; }
+.subscription-box a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+    .membership-overlay { padding: 12px; }
+    .membership-card { border-radius: 10px; padding-top: 32px; }
+    .benefits { grid-template-columns: 1fr; gap: 0; }
+    .benefit { gap: 10px; }
+    .benefit h3 { font-size: 15px; }
+    .benefit p { font-size: 11px; }
+}
+
+@media (max-height: 560px) {
+    .membership-overlay { align-items: flex-start; }
+}
+</style>
+<body>
+<div class="membership-overlay">
+    <div class="membership-card">
+        <div class="membership-close"><p><a href="jacket.html">X</a></p></div>
+        <div class="premium-icon">♛</div>
+        <h1>Premium</h1>
+        <p class="premium-subtitle">More benefits. A better you.</p>
+        <div class="plans">
+            <div class="plan active">
+                <h3>Weekly</h3>
+                <span>₹99 / week</span>
+            </div>
+            <div class="plan">
+                <h3>Monthly</h3>
+                <span>₹199 / month</span>
+            </div>
+            <div class="plan yearly">
+                <div class="best-value">Best Value</div>
+                <h3>Yearly</h3>
+                <span>₹1,499 / year</span>
+            </div>
+        </div>
+        <div class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon delivery">🚚</div>
+                <div>
+                    <h3>Free & Faster Delivery</h3>
+                    <p>Get free and faster delivery on eligible orders.</p>
+                </div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon access">⚡</div>
+                <div>
+                    <h3>Early Access</h3>
+                    <p>Be the first to access exclusive deals and offers.</p>
+                </div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon entertainment">▶</div>
+                <div>
+                    <h3>Entertainment</h3>
+                    <p>Enjoy movies, shows and exclusive content.</p>
+                </div>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon offers">♛</div>
+                <div>
+                    <h3>Exclusive Offers</h3>
+                    <p>Special discounts only for Premium members.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Price -->
+        <div class="subscription-box">
+            <div class="price">
+                ₹99 <span>/ week</span>
+            </div>
+            <button class="subscribe-btn">
+                Subscribe Now
+            </button>
+            <p>
+                Cancel anytime.
+                <a href="#">Terms and conditions apply.</a>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
