@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chamazon-Sign.in</title>
+    <link rel="icon" type="image/png" href="logo1.jpg">
+</head>
+<style>
+body{
+        background-image: url(bg2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+.sign-in-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.login-box {
+    position: relative;
+    width: 510px;
+    max-width: 90%;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px 24px 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    text-align: center;
+}
+.sign-in-close{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    width: 50px;
+    background:#ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sign-in-close p{
+    color:  #080808;
+}
+.sign-in-close a{
+    color: #fa0202;
+    text-decoration: none;
+}
+h2 {
+    text-align: center;
+}
+
+
+input {
+    width: 90%;
+    padding: 12px;
+    margin-top: 5px;
+    border-top-left-radius:10px ;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 7px;
+    background: #ffc400;
+    color: #111;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 30px;
+}
+.submit-btn:hover {
+    background: #ffb900;
+    transform: translateY(-1px);
+}
+</style>
+<body>
+<div class="sign-in-overlay">
+        
+    <div class="login-box">
+        <div class="sign-in-close"><p><a href="wallclock.html">X</a></p></div>
+        <h2>Sign-in</h2>
+
+        <form>
+            <input type="text" placeholder="Chamazon ID"><br><br>
+
+            <input type="password" placeholder="Password">
+
+           <button class="submit-btn">
+                Login
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
